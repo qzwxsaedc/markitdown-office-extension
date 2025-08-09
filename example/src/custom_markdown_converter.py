@@ -1,6 +1,6 @@
 from typing import Any, Optional
 
-from markdown_converter import MarkdownConverter
+from markitdown_office_extension.markdown_converter import MarkdownConverter
 
 class CustomMarkdownConverter(MarkdownConverter):
     def convert_img(
@@ -16,7 +16,7 @@ class CustomMarkdownConverter(MarkdownConverter):
             print("image alt: {alt}, title: {title}, src: {src}...".format(
                 alt=el.attrs.get("alt", ""),
                 title=el.attrs.get("title", ""),
-                src=src[:32],
+                src=src[:64],
             ))
 
             # ... or modify image attr such as `src`
