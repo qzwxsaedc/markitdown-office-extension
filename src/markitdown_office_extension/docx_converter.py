@@ -1,8 +1,12 @@
 from typing import BinaryIO, Any, Type
 
 from markdownify import MarkdownConverter
-from markitdown import StreamInfo, DocumentConverterResult
-from markitdown.converters._docx_converter import DocxConverter as _DocxConverter
+try:
+    from markitdown import StreamInfo, DocumentConverterResult
+    from markitdown.converters._docx_converter import DocxConverter as _DocxConverter
+except ImportError:
+    from markitdown_no_magika import StreamInfo, DocumentConverterResult
+    from markitdown_no_magika.converters._docx_converter import DocxConverter as _DocxConverter
 
 from .html_converter import HtmlConverter
 

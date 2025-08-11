@@ -1,7 +1,10 @@
 from typing import Type
 
 from markdownify import MarkdownConverter
-from markitdown.converters._pptx_converter import PptxConverter as _PptxConverter
+try:
+    from markitdown.converters._pptx_converter import PptxConverter as _PptxConverter
+except ImportError:
+    from markitdown_no_magika.converters._pptx_converter import PptxConverter as _PptxConverter
 
 from .html_converter import HtmlConverter
 

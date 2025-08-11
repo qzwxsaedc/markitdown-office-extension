@@ -1,8 +1,12 @@
 from typing import BinaryIO, Any, Type
 
 from markdownify import MarkdownConverter
-from markitdown import StreamInfo, DocumentConverterResult
-from markitdown.converters._epub_converter import EpubConverter as _EpubConverter
+try:
+    from markitdown import StreamInfo, DocumentConverterResult
+    from markitdown.converters._epub_converter import EpubConverter as _EpubConverter
+except ImportError:
+    from markitdown_no_magika import StreamInfo, DocumentConverterResult
+    from markitdown_no_magika.converters._epub_converter import EpubConverter as _EpubConverter
 
 from .html_converter import HtmlConverter
 

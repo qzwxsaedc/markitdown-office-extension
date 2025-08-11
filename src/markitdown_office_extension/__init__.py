@@ -2,7 +2,11 @@ __plugin_interface_version__ = 1
 
 from typing import Type
 
-from markitdown import MarkItDown
+try:
+    from markitdown import MarkItDown
+except ImportError:
+    from markitdown_no_magika import MarkItDown
+
 from markdownify import MarkdownConverter as MarkdownifyMarkdownConverter
 
 
@@ -17,12 +21,21 @@ def register_converters(markitdown: MarkItDown, markdownify: Type[MarkdownifyMar
     from .pptx_converter import PptxConverter
     from .epub_converter import EpubConverter
 
-    from markitdown.converters._docx_converter import DocxConverter as MarkitdownDocxConverter
-    from markitdown.converters._html_converter import HtmlConverter as MarkitdownHtmlConverter
-    from markitdown.converters._xlsx_converter import XlsxConverter as MarkitdownXlsxConverter
-    from markitdown.converters._xlsx_converter import XlsConverter  as MarkitdownXlsConverter
-    from markitdown.converters._pptx_converter import PptxConverter as MarkitdownPptxConverter
-    from markitdown.converters._epub_converter import EpubConverter as MarkitdownEpubConverter
+    try:
+        from markitdown.converters._docx_converter import DocxConverter as MarkitdownDocxConverter
+        from markitdown.converters._html_converter import HtmlConverter as MarkitdownHtmlConverter
+        from markitdown.converters._xlsx_converter import XlsxConverter as MarkitdownXlsxConverter
+        from markitdown.converters._xlsx_converter import XlsConverter  as MarkitdownXlsConverter
+        from markitdown.converters._pptx_converter import PptxConverter as MarkitdownPptxConverter
+        from markitdown.converters._epub_converter import EpubConverter as MarkitdownEpubConverter
+    except ImportError:
+        from markitdown_no_magika.converters._docx_converter import DocxConverter as MarkitdownDocxConverter
+        from markitdown_no_magika.converters._html_converter import HtmlConverter as MarkitdownHtmlConverter
+        from markitdown_no_magika.converters._xlsx_converter import XlsxConverter as MarkitdownXlsxConverter
+        from markitdown_no_magika.converters._xlsx_converter import XlsConverter  as MarkitdownXlsConverter
+        from markitdown_no_magika.converters._pptx_converter import PptxConverter as MarkitdownPptxConverter
+        from markitdown_no_magika.converters._epub_converter import EpubConverter as MarkitdownEpubConverter
+
 
     markdownify = MarkdownConverter if markdownify is None else markdownify
 

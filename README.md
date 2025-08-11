@@ -5,8 +5,10 @@ A markitdown plugin use to customize markdownif. Supports docx, pptx, xlsx, epub
 ```python
 from typing import Any, Optional
 from io import BytesIO
-
-from markitdown import MarkItDown
+try:
+    from markitdown import MarkItDown
+except ImportError:
+    from markitdown_no_magika import MarkItDown
 from markitdown_office_extension.markdown_converter import MarkdownConverter
 
 

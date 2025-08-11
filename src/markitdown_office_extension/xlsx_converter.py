@@ -1,7 +1,10 @@
 from typing import Type
 
 from markdownify import MarkdownConverter
-from markitdown.converters._xlsx_converter import XlsxConverter as _XlsxConverter, XlsConverter as _XlsConverter
+try:
+    from markitdown.converters._xlsx_converter import XlsxConverter as _XlsxConverter, XlsConverter as _XlsConverter
+except ImportError:
+    from markitdown_no_magika.converters._xlsx_converter import XlsxConverter as _XlsxConverter, XlsConverter as _XlsConverter
 
 from .html_converter import HtmlConverter
 

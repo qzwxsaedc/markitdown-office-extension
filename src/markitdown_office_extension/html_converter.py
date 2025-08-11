@@ -2,8 +2,12 @@ from typing import BinaryIO, Any, Type
 
 from bs4 import BeautifulSoup
 from markdownify import MarkdownConverter
-from markitdown import StreamInfo, DocumentConverterResult
-from markitdown.converters import HtmlConverter as _HtmlConverter
+try:
+    from markitdown import StreamInfo, DocumentConverterResult
+    from markitdown.converters import HtmlConverter as _HtmlConverter
+except ImportError:
+    from markitdown_no_magika import StreamInfo, DocumentConverterResult
+    from markitdown_no_magika.converters import HtmlConverter as _HtmlConverter
 
 
 class HtmlConverter(_HtmlConverter):

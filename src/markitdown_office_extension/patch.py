@@ -1,7 +1,13 @@
 from typing import Type
 
-from markitdown import DocumentConverter, MarkItDown
-from markitdown._markitdown import ConverterRegistration
+try:
+
+    from markitdown import DocumentConverter, MarkItDown
+    from markitdown._markitdown import ConverterRegistration
+except ImportError:
+
+    from markitdown_no_magika import DocumentConverter, MarkItDown
+    from markitdown_no_magika._markitdown import ConverterRegistration
 
 
 def try_patch(
